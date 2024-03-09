@@ -1,36 +1,33 @@
 # Streaming-Music-App
 
-The app utilizes an algorithm to suggest music based on the user’s listening history, providing a
-personalized and engaging experience. The app also allows you to listen, add, or delete different songs.
+The Streaming-Music-App leverages a sophisticated algorithm to suggest music tracks based on the user's listening history, offering a highly personalized and engaging experience. In addition to music recommendations, the application supports functionalities to listen, add, or delete songs, catering to a wide range of user preferences.
 
-Design Patterns
+## Design Patterns
 
-The four design patterns I have chosen to implement are:
+To ensure a robust and maintainable codebase, the following four design patterns have been implemented:
 
-Singleton
-Facade
-Command
-Builder
+- **Singleton:** Applied in classes where data is appended to `ArrayLists`, specifically in scenarios where only a single instance of a class is required throughout the application.
+- **Facade:** Utilized to simplify the interaction with `ArrayLists` by hiding the complexities involved in data addition and command implementation.
+- **Command:** Employed to handle the execution of six distinct commands within the program: LIST, ADD, DELETE, LISTEN, RECOMMEND, and SURPRISE.
+- **Builder:** Used for creating objects with their specific fields in a more understandable and cleaner way, particularly for `Streams`, `Streamers`, and `Users`.
 
-The rationale behind selecting these design patterns is as follows:
+## Classes
 
--Singletons were used in classes where data is added to ArrayLists, classes that are not needed elsewhere in the program.
+The class structure is designed to streamline the application's functionality and ensure clear separation of concerns:
 
--The Facade was employed to "hide" the way data is added to the respective ArrayLists and to conceal the implementation of commands.
+### Facade Pattern
+- **DecideFile:** Acts as a facade, encapsulating method calls to add data from each input into `ArrayLists`, simplifying the data handling process.
 
--Command is used to execute the six commands used in the program (LIST, ADD, DELETE, LISTEN, RECOMMEND, SURPRISE).
+### Parsing Classes
+- **ParseStreams, ParseStreamers, ParseUsers:** These classes are dedicated to extracting data from CSV files and populating `ArrayLists` accordingly. They are instrumental in the initial data setup.
+- **ParseCommands:** Unlike the other parsing classes, this one checks text files and allocates the results to specific command classes for execution.
 
--Builder is utilized to add each object with its specific fields to the list in a more easily understandable manner (Streams, Streamers, Users).
+### Builder Classes
+- **BuildStreams, BuildStreamers, BuildUsers:** These classes contain mechanisms for adding fields to objects, adhering to the Builder pattern to facilitate object creation with specific attributes.
 
-Classes:
+### Command Classes
+- **ListCommand, AddCommand, DeleteCommand, ListenCommand, RecommendCommand, SurpriseCommand:** Named after the commands they execute, these classes are central to the application's functionality, allowing users to interact with the music library through various actions.
 
-DecideFile is a class that acts as a facade. Inside it, there are only method calls to add data from each input into ArrayLists.
+## Conclusion
 
-Classes containing "Parse" at the beginning of their names were used solely to extract data from the received CSV files and add them to ArrayLists (ParseStreams, ParseStreamers, ParseUsers).
-
-An exception to this rule is the ParseCommands class, which checks text files and distributes the result to command classes.
-
-Classes ending with "Build" have the mechanism for adding fields to an object (BuildStreams, BuildStreamers, BuildUsers).
-
-Classes starting with "Command" were used to execute the commands received from the user (ListCommand, AddCommand, DeleteCommand, ListenCommand, RecommendCommand, SurpriseCommand).
-
+The Streaming-Music-App is a testament to thoughtful software design and development, integrating key design patterns to enhance code readability, maintainability, and user experience. Through its algorithm-driven music suggestions and comprehensive command set, it stands out as a personalized music listening platform.
